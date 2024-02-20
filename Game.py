@@ -200,7 +200,6 @@ class Game:
             self.game_state.winner = self.player1 if not player2_has_king else self.player2
         opponent = self.player1 if self.game_state.player_turn == self.player2 else self.player2
         if self.detect_if_echec_et_mat(opponent):
-            print("oklololo")
             self.game_state.echec_et_mat = True
             self.game_state.winner = opponent
 
@@ -253,8 +252,6 @@ class Game:
         self.game_state.player_turn = self.player2 if self.game_state.player_turn == self.player1 else self.player1
 
     def detect_if_echec_et_mat(self, opponent):
-        print("opponent", opponent.name)
-        print("me", self.game_state.player_turn.name)
         for y in range(constants.SIZE_BOARD):
             for x in range(constants.SIZE_BOARD):
                 piece = self.board.grid[x][y]
@@ -263,9 +260,6 @@ class Game:
                         piece_next_moves = piece.get_possible_next_moves(self.board.grid)
                         piece_legal_moves = remove_moves_where_king_is_in_danger(piece_next_moves, self.board, opponent, self.game_state.player_turn)
                         if piece_legal_moves:
-                            for z in piece_legal_moves:
-                                print(z.next_pos)
-                            print("piece", piece.x, piece.y)
                             return False
         return True
 
